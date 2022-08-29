@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:perfume_shop/ui/utils/MyConstant.dart';
 import 'package:perfume_shop/ui/widget/SideMenu.dart';
 
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
 
         primarySwatch: myprimaryswatch,
@@ -52,7 +54,10 @@ class _HomeState extends State<Home> {
             const VerticalDivider(thickness: 1, width: 2),
             Expanded(
               child: Center(
-                child: Text('Page Number: $_selectedIndex'),
+                child: ElevatedButton(onPressed: (){
+                  HapticFeedback.selectionClick();
+                },child: Text("sakljsd"),
+                ),
               ),
             )
           ],

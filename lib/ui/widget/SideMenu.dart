@@ -41,7 +41,7 @@ class _SideMenuState extends State<SideMenu> {
               borderRadius: BorderRadius.circular(12),
               onTap: () {
                 HapticFeedback.vibrate();
-                debugPrint("YOOOOOOOOOU HIIIIIIIIIIIIII");
+
               },
               child: Center(
                 child: Padding(
