@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:perfume_shop/generated/assets.dart';
 
 class SideMenu extends StatefulWidget {
@@ -24,18 +25,32 @@ class _SideMenuState extends State<SideMenu> {
     return LayoutBuilder(builder: (context, constraint) {
       return NavigationRail(
         leading: GestureDetector(
-          onTap: (){},
+          onTap: () {},
           child: CircleAvatar(
             backgroundImage: AssetImage(Assets.assetsMava),
             radius: 25,
           ),
         ),
-        trailing: Column(
-          children: [
-            Icon(Icons.chevron_right),
-            Icon(Icons.search),
-
-          ],
+        trailing: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: Theme.of(context).primaryColor.withOpacity(0.5)),
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(12),
+              onTap: () {
+                HapticFeedback.vibrate();
+                debugPrint("YOOOOOOOOOU HIIIIIIIIIIIIII");
+              },
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Icon(Icons.search, color: Colors.white),
+                ),
+              ),
+            ),
+          ),
         ),
         selectedIndex: widget.selectedMenu,
         elevation: 1,
