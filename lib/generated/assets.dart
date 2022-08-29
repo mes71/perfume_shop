@@ -3,5 +3,6 @@ class Assets {
   Assets._();
 
   static const String assetsMava = 'assets/mava.jpg';
+  static const String assetsPrProduct = 'assets/pr_product.json';
 
 }
