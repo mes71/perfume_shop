@@ -4,5 +4,14 @@ class Assets {
 
   static const String assetsMava = 'assets/mava.jpg';
   static const String assetsPrProduct = 'assets/pr_product.json';
+  static const String imagesPro1 = 'assets/images/pro_1.png';
+  static const String imagesPro2 = 'assets/images/pro_2.png';
+  static const String imagesPro3 = 'assets/images/pro_3.png';
+  static const String imagesPro4 = 'assets/images/pro_4.png';
+  static const String imagesPro5 = 'assets/images/pro_5.png';
+  static const String imagesPro6 = 'assets/images/pro_6.png';
+  static const String imagesPro7 = 'assets/images/pro_7.png';
+  static const String imagesPro8 = 'assets/images/pro_8.png';
+  static const String imagesPro9 = 'assets/images/pro_9.png';
 
 }
