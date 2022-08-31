@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:perfume_shop/generated/assets.dart';
 import 'package:perfume_shop/ui/utils/MyConstant.dart';
 import 'package:perfume_shop/ui/widget/SideMenu.dart';
 
@@ -17,7 +17,6 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-
         primarySwatch: myprimaryswatch,
       ),
       home: Home(),
@@ -39,7 +38,6 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: SafeArea(
         child: Row(
           children: [
@@ -53,13 +51,92 @@ class _HomeState extends State<Home> {
                 }),
             const VerticalDivider(thickness: 1, width: 2),
             Expanded(
-              child: Center(
-                child: ElevatedButton(onPressed: (){
-                  HapticFeedback.selectionClick();
-                },child: Text("sakljsd"),
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Row(
+                    children: List<Widget>.generate(
+                      3,
+                      (int index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 4),
+                          child: FilterChip(
+                            label: Text('Item $index'),
+                            selected: false,
+                            selectedColor: myprimaryswatchAccent,
+                            checkmarkColor: Colors.white,
+                            onSelected: (bool selected) {
+                              setState(() {
+                                debugPrint("asdsadsadas");
+                              });
+                            },
+                          ),
+                        );
+                      },
+                    ).toList(),
+                  ),
                 ),
-              ),
-            )
+                Expanded(
+                    child: SingleChildScrollView(
+                      child: Row(children: [
+                  ListView.builder(
+                        physics: BouncingScrollPhysics(),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 4,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              width: 150,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  color: Colors.blueAccent),
+                              child: Stack(
+                                children: [
+                                  SizedBox(
+                                    height: 50,
+                                  ),
+                                  Image.asset(
+                                    Assets.imagesPro2,
+                                    width: 200,
+                                  ),
+                                  Positioned(
+                                    bottom: 0,
+                                    left: 0,
+                                    right: 0,
+                                    child: Container(
+                                      width: 250,
+                                      height: 250,
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(25),
+                                              topLeft: Radius.circular(25),
+                                              bottomRight: Radius.circular(12),
+                                              bottomLeft: Radius.circular(12)),
+                                          color: Colors.white),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          );
+                        })
+                ]),
+                    )),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                      style: ButtonStyle(
+                          minimumSize:
+                              MaterialStateProperty.all(Size.fromHeight(50))),
+                      onPressed: () {},
+                      child: Text('see Your card')),
+                )
+              ],
+            )),
           ],
         ),
       ),
