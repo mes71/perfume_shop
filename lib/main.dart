@@ -88,19 +88,12 @@ class _HomeState extends State<Home> {
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
-                              width: 150,
+                              width: MediaQuery.of(context).size.width - 120,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(12),
                                   color: Colors.blueAccent),
                               child: Stack(
                                 children: [
-                                  SizedBox(
-                                    height: 50,
-                                  ),
-                                  Image.asset(
-                                    Assets.imagesPro2,
-                                    width: 200,
-                                  ),
                                   Positioned(
                                     bottom: 0,
                                     left: 0,
@@ -116,13 +109,26 @@ class _HomeState extends State<Home> {
                                               bottomLeft: Radius.circular(12)),
                                           color: Colors.white),
                                     ),
-                                  )
+                                  ),
+                                  Positioned(
+                                    top: 0,
+                                    bottom: 0,
+                                    right: 10,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Image.asset(
+                                          Assets.imagesPro2,
+                                          width: 200,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
                           );
-                        })
-                ),
+                        })),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
