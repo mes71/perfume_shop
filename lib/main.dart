@@ -34,6 +34,17 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   // initialize a index
   int _selectedIndex = 0;
+  var productList = [
+    Assets.imagesPro1,
+    Assets.imagesPro2,
+    Assets.imagesPro3,
+    Assets.imagesPro4,
+    Assets.imagesPro5,
+    Assets.imagesPro6,
+    Assets.imagesPro7,
+    Assets.imagesPro8,
+    Assets.imagesPro9,
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -52,8 +63,32 @@ class _HomeState extends State<Home> {
             const VerticalDivider(thickness: 1, width: 2),
             Expanded(
                 child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
               children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Row(
+                    children: List<Widget>.generate(
+                      3,
+                      (int index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 4),
+                          child: FilterChip(
+                            label: Text('Item $index'),
+                            selected: false,
+                            selectedColor: myprimaryswatchAccent,
+                            checkmarkColor: Colors.white,
+                            onSelected: (bool selected) {
+                              setState(() {
+                                debugPrint("asdsadsadas");
+                              });
+                            },
+                          ),
+                        );
+                      },
+                    ).toList(),
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Row(
@@ -82,7 +117,7 @@ class _HomeState extends State<Home> {
                     child: ListView.builder(
                         physics: BouncingScrollPhysics(),
                         scrollDirection: Axis.horizontal,
-                        itemCount: 4,
+                        itemCount: 9,
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
                           return Padding(
@@ -107,7 +142,8 @@ class _HomeState extends State<Home> {
                                               topLeft: Radius.circular(25),
                                               bottomRight: Radius.circular(12),
                                               bottomLeft: Radius.circular(12)),
-                                          color: Colors.white),
+                                          color: Color.fromARGB(
+                                              255, 242, 242, 242)),
                                     ),
                                   ),
                                   Positioned(
@@ -118,8 +154,9 @@ class _HomeState extends State<Home> {
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
                                         Image.asset(
-                                          Assets.imagesPro2,
+                                          productList[index],
                                           width: 200,
+                                          height: 400,
                                         ),
                                       ],
                                     ),
