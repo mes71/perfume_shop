@@ -78,10 +78,8 @@ class _HomeState extends State<Home> {
                     ).toList(),
                   ),
                 ),
-                Expanded(
-                    child: SingleChildScrollView(
-                      child: Row(children: [
-                  ListView.builder(
+                Flexible(
+                    child: ListView.builder(
                         physics: BouncingScrollPhysics(),
                         scrollDirection: Axis.horizontal,
                         itemCount: 4,
@@ -124,8 +122,7 @@ class _HomeState extends State<Home> {
                             ),
                           );
                         })
-                ]),
-                    )),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
