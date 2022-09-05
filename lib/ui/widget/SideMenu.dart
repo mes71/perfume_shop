@@ -31,26 +31,32 @@ class _SideMenuState extends State<SideMenu> {
             radius: 25,
           ),
         ),
-        trailing: Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: Theme.of(context).primaryColor.withOpacity(0.5)),
-          child: Material(
-            color: Colors.transparent,
-            child: InkWell(
-              borderRadius: BorderRadius.circular(12),
-              onTap: () {
-                HapticFeedback.vibrate();
-
-              },
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Icon(Icons.search, color: Colors.white),
+        trailing: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: Theme.of(context).primaryColor.withOpacity(0.5)),
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(12),
+                  onTap: () {
+                    HapticFeedback.vibrate();
+                  },
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(Icons.search, color: Colors.white),
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
+            SizedBox(
+              height: 8,
+            ),
+          ],
         ),
         selectedIndex: widget.selectedMenu,
         elevation: 1,

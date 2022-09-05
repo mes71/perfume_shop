@@ -149,14 +149,15 @@ class _HomeState extends State<Home> {
                                   Positioned(
                                     top: 0,
                                     bottom: 0,
-                                    right: 10,
+                                    right: 0,
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
                                         Image.asset(
                                           productList[index],
-                                          width: 200,
-                                          height: 400,
+                                          width: 150,
+                                          height: 200,
+                                          fit: BoxFit.contain,
                                         ),
                                       ],
                                     ),
