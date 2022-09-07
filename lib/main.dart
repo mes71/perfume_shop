@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:perfume_shop/data/constants.dart';
-import 'package:perfume_shop/generated/assets.dart';
 import 'package:perfume_shop/ui/product/ProductScreen.dart';
 import 'package:perfume_shop/ui/utils/MyConstant.dart';
 import 'package:perfume_shop/ui/widget/SideMenu.dart';
-
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -17,13 +15,16 @@ class _HomeState extends State<Home> {
   // initialize a index
   int _selectedIndex = 0;
 
+  String genderFilter = '';
+  String otherFilter = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Row(
           children: [
-            // create a navigation rail
+            //region side Menu
             SideMenu(
                 selectedMenu: _selectedIndex,
                 onSelected: (int index) {
@@ -31,26 +32,28 @@ class _HomeState extends State<Home> {
                     _selectedIndex = index;
                   });
                 }),
+            //endregion
             const VerticalDivider(thickness: 1, width: 2),
             Expanded(
                 child: Column(
               children: [
+                //region Gender Filter
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  padding: const EdgeInsets.fromLTRB(6, 14, 8, 8),
                   child: Row(
                     children: List<Widget>.generate(
-                      3,
+                      genderList.length,
                       (int index) {
                         return Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 4),
                           child: FilterChip(
-                            label: Text('Item $index'),
-                            selected: false,
+                            label: Text(genderList[index]),
+                            selected: genderList[index] == genderFilter,
                             selectedColor: myprimaryswatchAccent,
                             checkmarkColor: Colors.white,
                             onSelected: (bool selected) {
                               setState(() {
-                                debugPrint("asdsadsadas");
+                                genderFilter = genderList[index];
                               });
                             },
                           ),
@@ -59,30 +62,38 @@ class _HomeState extends State<Home> {
                     ).toList(),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Row(
-                    children: List<Widget>.generate(
-                      3,
-                      (int index) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 4),
-                          child: FilterChip(
-                            label: Text('Item $index'),
-                            selected: false,
-                            selectedColor: myprimaryswatchAccent,
-                            checkmarkColor: Colors.white,
-                            onSelected: (bool selected) {
-                              setState(() {
-                                debugPrint("asdsadsadas");
-                              });
-                            },
-                          ),
-                        );
-                      },
-                    ).toList(),
+                //endregion
+
+                //region other Filter
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(6, 0, 8, 8),
+                    child: Row(
+                      children: List<Widget>.generate(
+                        otherFilterProductList.length,
+                        (int index) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 4),
+                            child: FilterChip(
+                              label: Text(otherFilterProductList[index]),
+                              selected: otherFilterProductList[index] ==otherFilter,
+                              selectedColor: myprimaryswatchAccent,
+                              checkmarkColor: Colors.white,
+                              onSelected: (bool selected) {
+                                setState(() {
+                                  otherFilter =otherFilterProductList[index];
+                                });
+                              },
+                            ),
+                          );
+                        },
+                      ).toList(),
+                    ),
                   ),
                 ),
+
+                //endregion
                 Flexible(
                     child: ListView.builder(
                         physics: BouncingScrollPhysics(),

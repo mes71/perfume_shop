@@ -95,3 +95,12 @@ List<Map<String, dynamic>> productList = [
 ];
 
 const String tagProduct = 'ProductTag';
+
+const List<String> genderList = ['Man', 'Woman', 'Unisex'];
+const List<String> otherFilterProductList = [
+  'Trading',
+  'BestSeller',
+  'Expensive',
+  'Inexpensive',
+  'Newest'
+];
