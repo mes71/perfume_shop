@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:perfume_shop/main.dart';
+import 'package:perfume_shop/ui/TestCont.dart';
 import 'package:perfume_shop/ui/product/ProductScreen.dart';
 import 'package:perfume_shop/ui/utils/MyConstant.dart';
 
@@ -18,10 +19,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: myprimaryswatch,
       ),
-      // home: TestCon(),
-      initialRoute: '/',
+       home: TestCon(),
+      //initialRoute: '/',
       routes: {
-        '/': (context) => const Home(),
+        //'/': (context) => const Home(),
         ProductScreen.tag: (context) => const ProductScreen()
       },
     );
