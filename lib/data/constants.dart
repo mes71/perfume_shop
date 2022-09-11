@@ -9,6 +9,7 @@ List<Map<String, dynamic>> productList = [
         "In the beginning, you’ll instantly fall in love with the notes of gooseberry, wild strawberry, and tropical coconut. A few minute later, your senses will be enchanted with intoxicating violet, fresh honey, exotic orchid, and the clean aroma of milk. In the drydown of the composition, you’ll recognise the warm notes of vanilla combined with the sweetness of caramel, clean and warm sandalwood, patchouli, and amber.",
     "image": Assets.imagesPro1,
     "bgColor": const Color.fromARGB(255, 158, 106, 24),
+    "Gender": 'Man',
     "size": 250,
     "price": 78.3,
   },
@@ -19,6 +20,7 @@ List<Map<String, dynamic>> productList = [
         "The opening notes feature two kinds of rose – the so-called cabbage rose, and Damask rose. They come together harmoniously with sweet iris blossom, soon followed by Bulgarian rose and deepened by jasmine. A pinch of cinnamon adds a mystical character, evoking a story of intoxicating love. The base notes include sandalwood and cedarwood, anchoring the composition while musk adds a touch of carnal beauty.",
     "image": Assets.imagesPro2,
     "bgColor": const Color.fromARGB(255, 171, 136, 81),
+    "Gender": 'Woman',
     "size": 75,
     "price": 56.30,
   },
@@ -29,6 +31,7 @@ List<Map<String, dynamic>> productList = [
     "description":
         "Get ready for an olfactory experience full of contrasts. First you’ll notice refreshing pink pepper and aromatic lavender. The top notes are then replaced by floral yet still masculine geranium and black plum. The drydown offers up a mineral note of truffles along with smokey oak wood and vetiver.",
     "image": Assets.imagesPro3,
+    "Gender": 'Man',
     "size": 100,
     "price": 103,
   },
@@ -39,6 +42,7 @@ List<Map<String, dynamic>> productList = [
         "Floral accords of frangipani and jasmine are the first to emerge. Sweet raspberry and intoxicating lotus are quick to follow. Finally, amber and warm woody notes complete the fragrance, giving it a boost of sensuality.",
     "image": Assets.imagesPro4,
     "bgColor": const Color.fromARGB(255, 186, 205, 253),
+    "Gender": 'Woman',
     "size": 75,
     "price": 53.87,
   },
@@ -49,6 +53,7 @@ List<Map<String, dynamic>> productList = [
         "In the beginning, you’ll instantly fall in love with the notes of gooseberry, wild strawberry, and tropical coconut. A few minute later, your senses will be enchanted with intoxicating violet, fresh honey, exotic orchid, and the clean aroma of milk. In the drydown of the composition, you’ll recognise the warm notes of vanilla combined with the sweetness of caramel, clean and warm sandalwood, patchouli, and amber.",
     "image": Assets.imagesPro5,
     "bgColor": const Color.fromARGB(255, 243, 127, 2),
+    "Gender": 'Unisex',
     "size": 250,
     "price": 78.3,
   },
@@ -61,6 +66,7 @@ List<Map<String, dynamic>> productList = [
     "bgColor": const Color.fromARGB(255, 255, 103, 128),
     "size": 75,
     "price": 56.30,
+    "Gender": 'Woman',
   },
   {
     "id": 7,
@@ -71,6 +77,7 @@ List<Map<String, dynamic>> productList = [
     "bgColor": const Color.fromARGB(255, 243, 164, 143),
     "size": 100,
     "price": 103,
+    "Gender": 'Unisex',
   },
   {
     "id": 8,
@@ -81,6 +88,7 @@ List<Map<String, dynamic>> productList = [
     "bgColor": const Color.fromARGB(255, 235, 211, 149),
     "size": 75,
     "price": 53.87,
+    "Gender": 'Woman',
   },
   {
     "id": 9,
@@ -91,6 +99,7 @@ List<Map<String, dynamic>> productList = [
     "bgColor": const Color.fromARGB(255, 114, 168, 183),
     "size": 75,
     "price": 56.30,
+    "Gender": 'Unisex',
   },
 ];
 

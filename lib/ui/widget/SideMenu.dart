@@ -24,6 +24,7 @@ class _SideMenuState extends State<SideMenu> {
 
     return LayoutBuilder(builder: (context, constraint) {
       return NavigationRail(
+
         leading: GestureDetector(
           onTap: () {},
           child: CircleAvatar(
@@ -58,6 +59,7 @@ class _SideMenuState extends State<SideMenu> {
             ),
           ],
         ),
+
         selectedIndex: widget.selectedMenu,
         elevation: 1,
         onDestinationSelected: widget.onSelected,
@@ -145,6 +147,7 @@ class _SideMenuState extends State<SideMenu> {
               label: Text('E.d.Fraiche'),
               padding: EdgeInsets.symmetric(vertical: 12)),
         ],
+
         selectedIconTheme: IconThemeData(color: Colors.white),
         unselectedIconTheme: IconThemeData(color: Colors.black),
         selectedLabelTextStyle: TextStyle(color: Colors.white),

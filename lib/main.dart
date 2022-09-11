@@ -18,8 +18,13 @@ class _HomeState extends State<Home> {
   String genderFilter = '';
   String otherFilter = '';
 
+  final GlobalKey<AnimatedListState> _listKey = GlobalKey();
+
+
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: SafeArea(
         child: Row(
@@ -67,6 +72,7 @@ class _HomeState extends State<Home> {
                 //region other Filter
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
+                  physics: const BouncingScrollPhysics(),
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(6, 0, 8, 8),
                     child: Row(
@@ -77,12 +83,13 @@ class _HomeState extends State<Home> {
                             padding: const EdgeInsets.symmetric(horizontal: 4),
                             child: FilterChip(
                               label: Text(otherFilterProductList[index]),
-                              selected: otherFilterProductList[index] ==otherFilter,
+                              selected:
+                                  otherFilterProductList[index] == otherFilter,
                               selectedColor: myprimaryswatchAccent,
                               checkmarkColor: Colors.white,
                               onSelected: (bool selected) {
                                 setState(() {
-                                  otherFilter =otherFilterProductList[index];
+                                  otherFilter = otherFilterProductList[index];
                                 });
                               },
                             ),
@@ -94,22 +101,28 @@ class _HomeState extends State<Home> {
                 ),
 
                 //endregion
-                Flexible(
-                    child: ListView.builder(
-                        physics: BouncingScrollPhysics(),
-                        scrollDirection: Axis.horizontal,
-                        itemCount: productList.length,
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).pushNamed(ProductScreen.tag,
-                                  arguments: productList[index]);
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+
+                Expanded(
+                  flex: 1,
+                    child: AnimatedList(
+                      physics: const BouncingScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
+                      initialItemCount: productList.length,
+                      itemBuilder: (BuildContext context, int index, Animation<double> animation) {
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pushNamed(ProductScreen.tag,
+                                arguments: productList[index]);
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Card(
+
+                              color: Colors.transparent,
+                              elevation: 3,
                               child: Container(
-                                width: MediaQuery.of(context).size.width - 120,
+                                width:
+                                MediaQuery.of(context).size.width -120,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(12),
                                     color: productList[index]['bgColor']),
@@ -127,18 +140,18 @@ class _HomeState extends State<Home> {
                                                 topRight: Radius.circular(25),
                                                 topLeft: Radius.circular(25),
                                                 bottomRight:
-                                                    Radius.circular(12),
+                                                Radius.circular(12),
                                                 bottomLeft:
-                                                    Radius.circular(12)),
+                                                Radius.circular(12)),
                                             color: Color.fromARGB(
                                                 255, 242, 242, 242)),
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Column(
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                            CrossAxisAlignment.start,
                                             mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
+                                            MainAxisAlignment.spaceAround,
                                             children: [
                                               Row(
                                                 children: [
@@ -146,18 +159,19 @@ class _HomeState extends State<Home> {
                                                     height: 50,
                                                   ),
                                                   Text(
-                                                    productList[index]['title'],
+                                                    productList[index]
+                                                    ['title'],
                                                     style: const TextStyle(
                                                         fontSize: 23,
                                                         fontWeight:
-                                                            FontWeight.w700),
+                                                        FontWeight.w700),
                                                   ),
                                                 ],
                                               ),
                                               Row(
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceAround,
+                                                MainAxisAlignment
+                                                    .spaceAround,
                                                 children: [
                                                   Column(
                                                     children: [
@@ -166,21 +180,23 @@ class _HomeState extends State<Home> {
                                                         style: TextStyle(
                                                             fontSize: 22,
                                                             fontWeight:
-                                                                FontWeight.w600,
-                                                            color: Colors.grey),
+                                                            FontWeight
+                                                                .w600,
+                                                            color:
+                                                            Colors.grey),
                                                       ),
                                                       SizedBox(
                                                         width: 50,
                                                       ),
                                                       Text(
                                                         productList[index]
-                                                                ['size']
+                                                        ['size']
                                                             .toString(),
                                                         style: TextStyle(
                                                             fontSize: 20,
                                                             fontWeight:
-                                                                FontWeight
-                                                                    .w600),
+                                                            FontWeight
+                                                                .w600),
                                                       ),
                                                     ],
                                                   ),
@@ -191,17 +207,20 @@ class _HomeState extends State<Home> {
                                                         style: TextStyle(
                                                             fontSize: 22,
                                                             fontWeight:
-                                                                FontWeight.w600,
-                                                            color: Colors.grey),
+                                                            FontWeight
+                                                                .w600,
+                                                            color:
+                                                            Colors.grey),
                                                       ),
                                                       Text(
                                                         "\$${productList[index]['price']}",
                                                         style: TextStyle(
                                                             fontSize: 20,
                                                             fontWeight:
-                                                                FontWeight.w600,
+                                                            FontWeight
+                                                                .w600,
                                                             color:
-                                                                Colors.green),
+                                                            Colors.green),
                                                       ),
                                                     ],
                                                   ),
@@ -218,7 +237,7 @@ class _HomeState extends State<Home> {
                                       right: 0,
                                       child: Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.end,
+                                        MainAxisAlignment.end,
                                         children: [
                                           Hero(
                                             tag: tagProduct,
@@ -236,15 +255,22 @@ class _HomeState extends State<Home> {
                                 ),
                               ),
                             ),
-                          );
-                        })),
+                          ),
+                        );
+                      },
+
+                    )),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
                       style: ButtonStyle(
                           minimumSize:
                               MaterialStateProperty.all(Size.fromHeight(50))),
-                      onPressed: () {},
+                      onPressed: () {
+                        debugPrint(MediaQuery.of(context).padding.left.toString());
+                        debugPrint(MediaQuery.of(context).viewPadding.toString());
+
+                      },
                       child: Text('see Your card')),
                 )
               ],
