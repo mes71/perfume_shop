@@ -19,10 +19,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: myprimaryswatch,
       ),
-       home: TestCon(),
-      //initialRoute: '/',
+
+      initialRoute: '/',
       routes: {
-        //'/': (context) => const Home(),
+        '/': (context) => const Home(),
         ProductScreen.tag: (context) => const ProductScreen()
       },
     );

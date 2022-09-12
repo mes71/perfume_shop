@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:perfume_shop/data/constants.dart';
 import 'package:perfume_shop/ui/product/ProductScreen.dart';
@@ -17,14 +18,10 @@ class _HomeState extends State<Home> {
 
   String genderFilter = '';
   String otherFilter = '';
-
-  final GlobalKey<AnimatedListState> _listKey = GlobalKey();
-
-
+  List<int> favList = [];
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: SafeArea(
         child: Row(
@@ -46,69 +43,107 @@ class _HomeState extends State<Home> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(6, 14, 8, 8),
                   child: Row(
-                    children: List<Widget>.generate(
-                      genderList.length,
-                      (int index) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 4),
-                          child: FilterChip(
-                            label: Text(genderList[index]),
-                            selected: genderList[index] == genderFilter,
-                            selectedColor: myprimaryswatchAccent,
-                            checkmarkColor: Colors.white,
-                            onSelected: (bool selected) {
-                              setState(() {
-                                genderFilter = genderList[index];
-                              });
+                    children: [
+                      Text(
+                        'Gender: ',
+                        style: TextStyle(fontSize: 14),
+                      ),
+                      Flexible(
+                          child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        physics: const BouncingScrollPhysics(),
+                        child: Row(
+                          children: List<Widget>.generate(
+                            genderList.length,
+                            (int index) {
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 4),
+                                child: FilterChip(
+                                  label: Text(genderList[index]),
+                                  selected: genderList[index] == genderFilter,
+                                  selectedColor: myprimaryswatchAccent,
+                                  checkmarkColor: Colors.white,
+                                  onSelected: (bool selected) {
+                                    setState(() {
+                                      if (genderFilter == genderList[index]) {
+                                        genderFilter = '';
+                                      } else {
+                                        genderFilter = genderList[index];
+                                      }
+                                    });
+                                  },
+                                ),
+                              );
                             },
-                          ),
-                        );
-                      },
-                    ).toList(),
+                          ).toList(),
+                        ),
+                      )),
+                    ],
                   ),
                 ),
                 //endregion
 
                 //region other Filter
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  physics: const BouncingScrollPhysics(),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(6, 0, 8, 8),
-                    child: Row(
-                      children: List<Widget>.generate(
-                        otherFilterProductList.length,
-                        (int index) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 4),
-                            child: FilterChip(
-                              label: Text(otherFilterProductList[index]),
-                              selected:
-                                  otherFilterProductList[index] == otherFilter,
-                              selectedColor: myprimaryswatchAccent,
-                              checkmarkColor: Colors.white,
-                              onSelected: (bool selected) {
-                                setState(() {
-                                  otherFilter = otherFilterProductList[index];
-                                });
-                              },
-                            ),
-                          );
-                        },
-                      ).toList(),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Sort By: ',
+                      style: TextStyle(fontSize: 14),
                     ),
-                  ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Flexible(
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        physics: const BouncingScrollPhysics(),
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(6, 0, 8, 8),
+                          child: Row(
+                              children: List<Widget>.generate(
+                            otherFilterProductList.length,
+                            (int index) {
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 4),
+                                child: FilterChip(
+                                  label: Text(otherFilterProductList[index]),
+                                  selected: otherFilterProductList[index] ==
+                                      otherFilter,
+                                  selectedColor: myprimaryswatchAccent,
+                                  checkmarkColor: Colors.white,
+                                  onSelected: (bool selected) {
+                                    setState(() {
+                                      if (otherFilter ==
+                                          otherFilterProductList[index]) {
+                                        otherFilter = '';
+                                      } else {
+                                        otherFilter =
+                                            otherFilterProductList[index];
+                                      }
+                                    });
+                                  },
+                                ),
+                              );
+                            },
+                          )),
+                        ),
+                      ),
+                    )
+                  ],
                 ),
-
                 //endregion
 
                 Expanded(
-                  flex: 1,
+                    flex: 1,
                     child: AnimatedList(
                       physics: const BouncingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
                       initialItemCount: productList.length,
-                      itemBuilder: (BuildContext context, int index, Animation<double> animation) {
+                      itemBuilder: (BuildContext context, int index,
+                          Animation<double> animation) {
                         return GestureDetector(
                           onTap: () {
                             Navigator.of(context).pushNamed(ProductScreen.tag,
@@ -117,17 +152,60 @@ class _HomeState extends State<Home> {
                           child: Padding(
                             padding: const EdgeInsets.all(4.0),
                             child: Card(
-
                               color: Colors.transparent,
                               elevation: 3,
                               child: Container(
-                                width:
-                                MediaQuery.of(context).size.width -120,
+                                width: MediaQuery.of(context).size.width - 120,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(12),
                                     color: productList[index]['bgColor']),
                                 child: Stack(
                                   children: [
+                                    Positioned(
+                                        top: 0.5,
+                                        left: 30,
+                                        child: Container(
+                                          width: 45,
+                                          height: 80,
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius: BorderRadius.only(
+                                                bottomLeft: Radius.circular(50),
+                                                bottomRight:
+                                                    Radius.circular(50),
+                                              )),
+                                          child: Center(
+                                            child: IconButton(
+                                                onPressed: () {
+                                                  if (favList.contains(
+                                                      productList[index]
+                                                          ['id'])) {
+                                                    favList.remove(
+                                                        productList[index]
+                                                            ['id']);
+                                                  } else {
+                                                    favList.add(
+                                                        productList[index]
+                                                            ['id']);
+                                                  }
+                                                  setState(() {});
+                                                },
+                                                icon: Icon(
+                                                  favList.contains(
+                                                          productList[index]
+                                                              ['id'])
+                                                      ? CupertinoIcons
+                                                          .heart_fill
+                                                      : CupertinoIcons.heart,
+                                                  size: 35,
+                                                  color: favList.contains(
+                                                          productList[index]
+                                                              ['id'])
+                                                      ? Colors.red
+                                                      : Colors.black,
+                                                )),
+                                          ),
+                                        )),
                                     Positioned(
                                       bottom: 0,
                                       left: 0,
@@ -140,18 +218,18 @@ class _HomeState extends State<Home> {
                                                 topRight: Radius.circular(25),
                                                 topLeft: Radius.circular(25),
                                                 bottomRight:
-                                                Radius.circular(12),
+                                                    Radius.circular(12),
                                                 bottomLeft:
-                                                Radius.circular(12)),
+                                                    Radius.circular(12)),
                                             color: Color.fromARGB(
                                                 255, 242, 242, 242)),
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Column(
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                                CrossAxisAlignment.start,
                                             mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
+                                                MainAxisAlignment.spaceAround,
                                             children: [
                                               Row(
                                                 children: [
@@ -159,19 +237,18 @@ class _HomeState extends State<Home> {
                                                     height: 50,
                                                   ),
                                                   Text(
-                                                    productList[index]
-                                                    ['title'],
+                                                    productList[index]['title'],
                                                     style: const TextStyle(
                                                         fontSize: 23,
                                                         fontWeight:
-                                                        FontWeight.w700),
+                                                            FontWeight.w700),
                                                   ),
                                                 ],
                                               ),
                                               Row(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .spaceAround,
+                                                    MainAxisAlignment
+                                                        .spaceAround,
                                                 children: [
                                                   Column(
                                                     children: [
@@ -180,23 +257,21 @@ class _HomeState extends State<Home> {
                                                         style: TextStyle(
                                                             fontSize: 22,
                                                             fontWeight:
-                                                            FontWeight
-                                                                .w600,
-                                                            color:
-                                                            Colors.grey),
+                                                                FontWeight.w600,
+                                                            color: Colors.grey),
                                                       ),
                                                       SizedBox(
                                                         width: 50,
                                                       ),
                                                       Text(
                                                         productList[index]
-                                                        ['size']
+                                                                ['size']
                                                             .toString(),
                                                         style: TextStyle(
                                                             fontSize: 20,
                                                             fontWeight:
-                                                            FontWeight
-                                                                .w600),
+                                                                FontWeight
+                                                                    .w600),
                                                       ),
                                                     ],
                                                   ),
@@ -207,20 +282,17 @@ class _HomeState extends State<Home> {
                                                         style: TextStyle(
                                                             fontSize: 22,
                                                             fontWeight:
-                                                            FontWeight
-                                                                .w600,
-                                                            color:
-                                                            Colors.grey),
+                                                                FontWeight.w600,
+                                                            color: Colors.grey),
                                                       ),
                                                       Text(
                                                         "\$${productList[index]['price']}",
                                                         style: TextStyle(
                                                             fontSize: 20,
                                                             fontWeight:
-                                                            FontWeight
-                                                                .w600,
+                                                                FontWeight.w600,
                                                             color:
-                                                            Colors.green),
+                                                                Colors.green),
                                                       ),
                                                     ],
                                                   ),
@@ -232,21 +304,18 @@ class _HomeState extends State<Home> {
                                       ),
                                     ),
                                     Positioned(
-                                      top: 0,
-                                      bottom: 0,
+                                      top: 10,
+                                      bottom: 71,
                                       right: 0,
                                       child: Row(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.end,
+                                            MainAxisAlignment.end,
                                         children: [
-                                          Hero(
-                                            tag: tagProduct,
-                                            child: Image.asset(
-                                              productList[index]['image'],
-                                              width: 150,
-                                              height: 200,
-                                              fit: BoxFit.contain,
-                                            ),
+                                          Image.asset(
+                                            productList[index]['image'],
+                                            width: 150,
+                                            height: 200,
+                                            fit: BoxFit.contain,
                                           ),
                                         ],
                                       ),
@@ -258,7 +327,6 @@ class _HomeState extends State<Home> {
                           ),
                         );
                       },
-
                     )),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -267,11 +335,25 @@ class _HomeState extends State<Home> {
                           minimumSize:
                               MaterialStateProperty.all(Size.fromHeight(50))),
                       onPressed: () {
-                        debugPrint(MediaQuery.of(context).padding.left.toString());
-                        debugPrint(MediaQuery.of(context).viewPadding.toString());
-
+                        debugPrint(
+                            MediaQuery.of(context).padding.left.toString());
+                        debugPrint(
+                            MediaQuery.of(context).viewPadding.toString());
                       },
-                      child: Text('see Your card')),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Text('See Your card'),
+                          SizedBox(
+                            width: 15,
+                          ),
+                          Icon(
+                            Icons.shopping_bag_outlined,
+                            color: Colors.white,
+                            size: 25,
+                          )
+                        ],
+                      )),
                 )
               ],
             )),
