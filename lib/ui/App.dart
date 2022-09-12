@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:perfume_shop/main.dart';
-import 'package:perfume_shop/ui/TestCont.dart';
-import 'package:perfume_shop/ui/product/ProductScreen.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:perfume_shop/ui/screen/home/home.dart';
+import 'package:perfume_shop/ui/screen/product/ProductScreen.dart';
 import 'package:perfume_shop/ui/utils/MyConstant.dart';
 
 void main() {
@@ -14,12 +14,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Perfume Shop',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        fontFamily: GoogleFonts.lato().fontFamily,
         primarySwatch: myprimaryswatch,
       ),
-
       initialRoute: '/',
       routes: {
         '/': (context) => const Home(),

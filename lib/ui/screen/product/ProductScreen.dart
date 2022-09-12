@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:perfume_shop/data/constants.dart';
 import 'package:perfume_shop/data/model/ProductModel.dart';
 
 class ProductScreen extends StatefulWidget {
@@ -64,7 +63,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         title: Text(
                           productModel.description!,
                           style: const TextStyle(
-                              fontSize: 13, color: Colors.black87),
+                              fontSize: 16, color: Colors.black87),
                         ),
                       );
               }),
@@ -75,7 +74,16 @@ class _ProductScreenState extends State<ProductScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {}, label: Text('add to basket')),
+          onPressed: () {},
+          label: Row(
+            children: const [
+              Text('Add to basket'),
+              SizedBox(
+                width: 10,
+              ),
+              Icon(Icons.add_shopping_cart_rounded)
+            ],
+          )),
     );
   }
 }

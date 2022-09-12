@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:perfume_shop/data/constants.dart';
 import 'package:perfume_shop/data/model/ProductModel.dart';
-import 'package:perfume_shop/ui/product/ProductScreen.dart';
+import 'package:perfume_shop/ui/screen/product/ProductScreen.dart';
 
 class CardProduct extends StatelessWidget {
   const CardProduct({Key? key, required this.productModel}) : super(key: key);
